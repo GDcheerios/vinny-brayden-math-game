@@ -5,8 +5,10 @@ from math_question import MathQuestion
 from tabulate import tabulate
 import time
 
+round_func = round
+
 def clear():
-    for i in range(25):
+    for _ in range(25):
         print("\n")
 
 for i in range(config.rounds):
@@ -23,7 +25,7 @@ for i in range(config.rounds):
         end = time.time()
         duration = end-start
         duration_score = 0
-        if duration <= 1:
+        if duration <= 1.2:
             duration_score += 300
 
         if duration <= 2:
@@ -35,15 +37,21 @@ for i in range(config.rounds):
         if is_correct:
             print("Correct!")
             player.add_combo()
-            score = (100 + duration_score) * ((question.difficulty + 1) * player.combo)
+            score = int(
+                (100 + duration_score) * (
+                    (question.difficulty + 1) *
+                        player.combo
+                )
+            )
             player.score += score
 
             print(tabulate([[
                 score,
                 question.difficulty + 1,
+                round_func(duration, 2),
                 duration_score,
                 f'x{player.combo}'
-            ]], headers=['total', 'difficulty', 'time buff', 'combo']))
+            ]], headers=['total', 'difficulty', 'time', 'time buff', 'combo']))
 
         else:
             print(f"Incorrect!\nThe answer is: {question.answer}")
