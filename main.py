@@ -7,9 +7,11 @@ import time
 
 round_func = round
 
+
 def clear():
     for _ in range(25):
         print("\n")
+
 
 for i in range(config.rounds):
     clear()
@@ -40,7 +42,7 @@ for i in range(config.rounds):
             score = int(
                 (100 + duration_score) * (
                     (question.difficulty + 1) *
-                        player.combo
+                    player.combo
                 )
             )
             player.score += score
@@ -65,14 +67,13 @@ for i in range(config.rounds):
     for player in config.players:
         table.append(player.get_scoreboard_info())
 
-    print(tabulate(table, headers=
-                   [
-                   'name',
-                   'score',
-                   'incorrect count',
-                   'combo',
-                   'max combo',
-                   'difficulty'
-                   ]))
+    print(tabulate(table, headers=[
+        'name',
+        'score',
+        'incorrect count',
+        'combo',
+        'max combo',
+        'difficulty'
+    ]))
 
     input("Press enter to continue...")

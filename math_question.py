@@ -10,11 +10,11 @@ operators = [
     "**"
 ]
 
+
 class MathQuestion:
     difficulty: float = 0
     answer: int = 0
     problem: str = "0 + 0"
-
 
     def __init__(
         self,
@@ -66,10 +66,7 @@ class MathQuestion:
             difficulty += problem[0] * 0.05
             difficulty += problem[1]
 
-
-        
-
-        problem=f"{problem[0]} {operator} {problem[1]}"
+        problem = f"{problem[0]} {operator} {problem[1]}"
 
         return MathQuestion(
             problem=problem,
@@ -87,4 +84,3 @@ class MathQuestion:
 
     def __repr__(self) -> str:
         return self.problem
-
